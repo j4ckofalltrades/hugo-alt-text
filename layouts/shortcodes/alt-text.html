@@ -1,0 +1,41 @@
+{{- $src := .Get "src" -}}
+{{- $description := .Get "description" -}}
+
+{{- if not $src -}}
+  {{- errorf "alt-text shortcode: 'src' parameter is required (page: %s)" .Page.File.Path -}}
+{{- end -}}
+{{- if not $description -}}
+  {{- errorf "alt-text shortcode: 'description' parameter is required (page: %s)" .Page.File.Path -}}
+{{- end -}}
+
+{{- $id := printf "alt-text-%s-%d" (.Page.File.UniqueID | default .Page.RelPermalink | md5) .Ordinal -}}
+
+{{- if not (.Page.Scratch.Get "alt-text-loaded") -}}
+{{- .Page.Scratch.Set "alt-text-loaded" true -}}
+{{- $css := resources.Get "css/alt-text.css" | resources.Minify -}}
+{{- $js := resources.Get "js/alt-text.js" | resources.Minify -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+<script src="{{ $js.RelPermalink }}" defer></script>
+<!-- Overlay backdrop (only added once) -->
+<div class="alt-text-overlay" id="alt-text-overlay"></div>
+{{- end -}}
+
+<figure class="alt-text-container" id="{{ $id }}">
+  <img src="{{ $src | htmlEscape }}" alt="{{ $description | htmlEscape }}" class="alt-text-image" loading="lazy">
+  <button class="alt-text-button" aria-label="Show media description" data-target="{{ $id }}">
+    ALT
+  </button>
+</figure>
+
+<!-- Fixed position popup at bottom of viewport -->
+<div class="alt-text-popup" id="{{ $id }}-description" role="dialog" aria-modal="false" aria-labelledby="{{ $id }}-heading" aria-live="polite">
+  <div class="alt-text-popup-content">
+    <div class="alt-text-popup-header">
+      <div id="{{ $id }}-heading" class="alt-text-popup-title">Media description</div>
+      <button class="alt-text-close" aria-label="Close media description" data-target="{{ $id }}">
+        ×
+      </button>
+    </div>
+    <p>{{ $description | htmlEscape }}</p>
+  </div>
+</div>
