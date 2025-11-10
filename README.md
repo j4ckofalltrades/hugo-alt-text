@@ -1,8 +1,6 @@
 # hugo-alt-text
 
 A Hugo module that provides a custom shortcode for displaying images with clickable alt text descriptions.
-When users click the "ALT" button overlay, a detailed media description pops up at the bottom of the
-viewport.
 
 ## Installation
 

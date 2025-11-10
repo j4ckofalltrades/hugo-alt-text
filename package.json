@@ -1,0 +1,24 @@
+{
+  "name": "hugo-alt-text",
+  "version": "0.1.0",
+  "description": "Hugo module for image alt-text descriptions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint:js": "eslint assets/js/**/*.js",
+    "lint:css": "stylelint assets/css/**/*.css"
+  },
+  "keywords": [
+    "hugo",
+    "alt-text"
+  ],
+  "author": "Jordan Duabe",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "globals": "^15.14.0",
+    "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^37.0.0"
+  }
+}

@@ -25,7 +25,7 @@
   --alt-text-close-fg-dark-hover: #f8f9fa;
 
   /* Focus outline */
-  --alt-text-focus-color: #0066cc;
+  --alt-text-focus-color: #06c;
 }
 
 .alt-text-container {
@@ -121,10 +121,7 @@
 
 .alt-text-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: var(--alt-text-z-overlay);
   opacity: 0;
