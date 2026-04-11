@@ -14,6 +14,11 @@
   ],
   "author": "Jordan Duabe",
   "license": "MIT",
+  "pnpm": {
+    "overrides": {
+      "picomatch": "^4.0.2"
+    }
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.0.1",
